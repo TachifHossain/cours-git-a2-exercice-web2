@@ -21,9 +21,23 @@ if (isset($_POST) && !empty($_POST)) {
 		$email -> 			field value : email
 		$password -> 		field value : password
 	*/
-	userConnection($db, 'git@initiation.com', 'password');
-	
+	$connect = userConnection($db, $_POST['email'],$_POST['password']);
+
+	if($connect ==true){
+
+		header('Location:dashboard.php');
+
+
+	}
+
+	else{
+		$error= 'Mauvais identifiants'
+	}
+
+
+	/*
 	header('Location: dashboard.php');
+	*/
 }
 
 /******************************** 
