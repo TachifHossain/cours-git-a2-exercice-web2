@@ -11,7 +11,8 @@ require('model/functions.fn.php');
 			PROCESS
 ********************************/
 
-if (isset($_POST) && !empty($_POST)) {
+if (isset($_POST['email']) && !empty($_POST['email'])
+	&& isset($_POST['password']) && !empty($_POST['password'])) {
 	
 	/*userConnection
 		return :
@@ -21,9 +22,13 @@ if (isset($_POST) && !empty($_POST)) {
 		$email -> 			field value : email
 		$password -> 		field value : password
 	*/
-	$connect = userConnection($db, $_POST['email'],$_POST['password']);
 
-	if($connect ==true){
+		$email = $_POST['email'];
+		$password = $_POST['password'];
+
+	$connect = userConnection($db, $email ,$password);
+
+	if($connect==true){
 
 		header('Location:dashboard.php');
 
@@ -31,7 +36,7 @@ if (isset($_POST) && !empty($_POST)) {
 	}
 
 	else{
-		$error= 'Mauvais identifiants'
+		$error= 'Mauvais identifiants';
 	}
 
 
